@@ -39,5 +39,38 @@ namespace Firma
             dataGridView1.DataSource = lp;
         }
 
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            // Poprawienie funkcjonalności
+            if (dataGridView1.SelectedCells.Count > 0)
+            {
+                int wiersz = Convert.ToInt32(dataGridView1.CurrentRow.Index);
+                string imie = dataGridView1.Rows[wiersz].Cells[1].Value.ToString();
+                string nazwisko = dataGridView1.Rows[wiersz].Cells[2].Value.ToString();
+                string telefon = dataGridView1.Rows[wiersz].Cells[3].Value.ToString();
+                string email = dataGridView1.Rows[wiersz].Cells[4].Value.ToString();
+                int idPracownik = Convert.ToInt32(dataGridView1.Rows[wiersz].Cells[0].Value.ToString());
+                textBoxImie.Text = imie;
+                textBoxNazwisko.Text = nazwisko;
+                textBoxEmail.Text = email;
+                textBoxTelefon.Text = telefon;
+
+                var ls = from FakturaSprzedazy in listaFakturSprzedazy
+                         where (FakturaSprzedazy.PracownikId == idPracownik)
+                         select new
+                         {
+                             FakturaSprzedazy.Id,
+                             FakturaSprzedazy.Numer,
+                             FakturaSprzedazy.Netto,
+                             FakturaSprzedazy.Vat,
+                             FakturaSprzedazy.Data,
+                             FakturaSprzedazy.Zaplacono,
+                         };
+
+                dataGridView2.DataSource = ls;
+            }
+        }
+        }
+
     }
 }
