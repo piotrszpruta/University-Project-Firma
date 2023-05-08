@@ -88,6 +88,21 @@ namespace Firma
             listaToolStripMenuItem_Click(this, null); // odświeżenie siatki
         }
 
+        private void usunięcieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // odczytujemy wiersz, w którym jest pozycja do usunięcia
+            int wiersz = Convert.ToInt32(dataGridView1.CurrentRow.Index);
+            // odczytujemy id osoby do usunięcia
+            int idPracownik = Convert.ToInt32(dataGridView1.Rows[wiersz].Cells[0].Value.ToString());
+            // wybieranie elementów do usunięcia i ich oznaczanie
+            IEnumerable<Pracownik> doSkasowania = from pracownik in listaPracownikow
+                                                  where pracownik.Id == idPracownik
+                                                  select pracownik;
+            listaPracownikow.DeleteAllOnSubmit(doSkasowania);
+            // zapisywanie zmian
+            bazaDanychFirma.SubmitChanges();
+            // wyświetlanie tabeli
+            listaToolStripMenuItem_Click(this, null);
         }
 
     }
