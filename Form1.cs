@@ -140,5 +140,24 @@ namespace Firma
         }
 
 
+        private void pokażNieuregulowaneFakturyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            const string Status = "Nie uregulowana";
+            var fv = from FakturaSprzedazy in listaFakturSprzedazy
+                     where FakturaSprzedazy.Vat + FakturaSprzedazy.Netto > FakturaSprzedazy.Zaplacono
+                     select new
+                     {
+                         Status,
+                         FakturaSprzedazy.Numer,
+                         FakturaSprzedazy.Data,
+                         FakturaSprzedazy.Netto,
+                         FakturaSprzedazy.Vat,
+                         FakturaSprzedazy.Zaplacono,
+                         FakturaSprzedazy.KontrahentId,
+                         FakturaSprzedazy.PracownikId,
+                     };
+
+            dataGridView2.DataSource = fv;
+        }
     }
 }
