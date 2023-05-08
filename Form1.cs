@@ -70,6 +70,24 @@ namespace Firma
                 dataGridView2.DataSource = ls;
             }
         }
+
+        private void nowyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // dodawanie osoby do tabeli
+            int noweId = listaPracownikow.Max(Pracownik => Pracownik.Id) + 1;
+            Pracownik nowyPracownik = new Pracownik
+            {
+                Id = noweId,
+                Imie = textBoxImie.Text,
+                Nazwisko = textBoxNazwisko.Text,
+                Email = textBoxEmail.Text,
+                Telefon = textBoxTelefon.Text,
+            };
+            listaPracownikow.InsertOnSubmit(nowyPracownik);
+            bazaDanychFirma.SubmitChanges(); // zapisywanie zmian
+            listaToolStripMenuItem_Click(this, null); // odświeżenie siatki
+        }
+
         }
 
     }
