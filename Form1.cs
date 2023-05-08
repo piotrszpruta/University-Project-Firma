@@ -124,5 +124,21 @@ namespace Firma
             listaToolStripMenuItem_Click(this, null);
         }
 
+        private void listaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            // pobieranie kolekcji kontahentow
+            var lp = from Kontrahent in listaKontrahentow
+                     orderby Kontrahent.Nazwa
+                     select new
+                     {
+                         Kontrahent.Id,
+                         Kontrahent.Nazwa,
+                         Kontrahent.Nip,
+                         Kontrahent.Ulica
+                     };
+            dataGridView1.DataSource = lp;
+        }
+
+
     }
 }
