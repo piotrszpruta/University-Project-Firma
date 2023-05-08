@@ -105,5 +105,24 @@ namespace Firma
             listaToolStripMenuItem_Click(this, null);
         }
 
+        private void edycjaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int wiersz = Convert.ToInt32(dataGridView1.CurrentRow.Index);
+            int idPracownik = Convert.ToInt32(dataGridView1.Rows[wiersz].Cells[0].Value.ToString());
+            foreach (Pracownik pracownik in listaPracownikow)
+            {
+                if (pracownik.Id == idPracownik)
+                {
+                    pracownik.Imie = textBoxImie.Text;
+                    pracownik.Nazwisko = textBoxNazwisko.Text;
+                    pracownik.Email = textBoxEmail.Text;
+                    pracownik.Telefon = textBoxTelefon.Text;
+                }
+            }
+            // zapisywanie zmian
+            bazaDanychFirma.SubmitChanges();
+            listaToolStripMenuItem_Click(this, null);
+        }
+
     }
 }
