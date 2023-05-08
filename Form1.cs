@@ -139,6 +139,11 @@ namespace Firma
             dataGridView1.DataSource = lp;
         }
 
+        private void nowaFakturaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KontrahentView nowyKontrahent = new KontrahentView();
+            nowyKontrahent.Show();
+        }
 
         private void pokażNieuregulowaneFakturyToolStripMenuItem_Click(object sender, EventArgs e)
         {
