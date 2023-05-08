@@ -145,6 +145,12 @@ namespace Firma
             nowyKontrahent.Show();
         }
 
+        private void nowaFakturaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FakturaView nowaFaktura = new FakturaView();
+            nowaFaktura.Show();
+        }
+
         private void pokażNieuregulowaneFakturyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             const string Status = "Nie uregulowana";
